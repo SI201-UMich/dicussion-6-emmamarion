@@ -104,8 +104,17 @@ class PollReader():
         
         harris_total = 0
         trump_total = 0
-        for num in self.data_dict['Harris result']:
-            harris_total += num
+
+        for i in range(len(self.data_dict['sample type'])):
+            if self.data_dict['sample type'][i] == 'LV':
+                harris_total += self.data_dict['Harris result'][i]
+                trump_total += self.data_dict['Trump result'][i]
+                count += 1
+
+        if count > 0:
+            return (harris_total / count, trump_total / count)
+        else:
+            return (0.0, 0.0)
 
 
 
