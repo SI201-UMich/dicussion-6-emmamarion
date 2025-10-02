@@ -83,20 +83,15 @@ class PollReader():
         """
 
         # iterate through each row of the data
-        for row in self.raw_data[1:]:
-
-            # split up the row by comma
-            seperated = row.strip().split(',')
-
-            max_trump = max(self.data_dict['Harris result']) 
-            max_harris = max(self.data_dict['Trump result'])
-        
-            if max_trump > max_harris:
-                return f"Trump {(max_trump * 100):.1f}%"
-            elif max_harris > max_trump:
-                return f"Harris {(max_harris * 100):.1f}%"
-            elif max_harris == max_trump:
-                return f"EVEN {(max_harris * 100):.1f}%"
+        max_trump = max(self.data_dict['Harris result']) 
+        max_harris = max(self.data_dict['Trump result'])
+    
+        if max_trump > max_harris:
+            return f"Trump {(max_trump * 100):.1f}%"
+        elif max_harris > max_trump:
+            return f"Harris {(max_harris * 100):.1f}%"
+        elif max_harris == max_trump:
+            return f"EVEN {(max_harris * 100):.1f}%"
 
     def likely_voter_polling_average(self):
         """
